@@ -1,3 +1,5 @@
+Documentation: https://bundler.io/guides/creating_gem.html
+
 Reclone
 
 - user runs `reclone` via terminal (duh)
@@ -18,7 +20,7 @@ Potential classes
 - user class
  #user_name
   checks api class to see if user_name exists?
-  
+
 
  #directory?
 
