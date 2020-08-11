@@ -5,6 +5,7 @@ Reclone
 - user runs `reclone` via terminal (duh)
 - gets username? 
   -- check to see if user name exists
+- gets password
 - gets repo range (50 or 100 most recent repos)
   -- potential cap on range depending github api
 - gets directory to clone to

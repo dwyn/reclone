@@ -1,16 +1,19 @@
 # require 'dotenv/load'
+require 'io/console'
 
 class Reclone::CLI
 # class Reclone
-  @current_user = ""
-  @current_user_repositories = []
-  @clone_directory = ""
+# @current_user_repositories = []
+# @clone_directory = ""
+  # def initialize
+  #   @current_user = User.new
+  # end
 
   #? Reclone::CLI.new.call
   def call
     up?
-    get_config
-    # log_in
+    # get_config
+    log_in
     recloner   
 	end
 
@@ -24,30 +27,34 @@ class Reclone::CLI
     end
   end
 
-  def get_config
-    Octokit.configure do |c|
-      binding.pry
-      c.login = ENV['GIT_USER']
-      c.password = ENV['GIT_PASSWORD']
-    end
-    @current_user = Octokit.user
-  end
-
-
   def directory_exists?(directory)
     Dir.exists?(directory)
   end
 
   def log_in
-    #https://goo.gl/UXLeNL
     # YAML.load(File.open(File.join(File.dirname(__FILE__), 'data.yaml')))
-    # puts "Hello user"; sleep 1
-    # puts "Please enter your user name."
-    # username = gets.strip
+    puts "Hello user"; sleep 1
+    puts "Please enter your user name."
+    user_name = gets.strip
 
-    # puts "Awesome. Please enter your password."
-    # user_password = gets.strip
-    # # DO SOMETHING ABOUT BAD CREDENTIALS!!!
+    puts "Awesome. Please enter your password."
+    user_password = STDIN.noecho(&:gets).chomp
+
+    @user = User.new
+    binding.pry
+    #! WHAT DO I DO ABOUT 2-FACTOR AUTHENTICATION???
+    #! Github: https://developer.github.com/changes/2020-02-14-deprecating-password-auth/
+    if @user.authenticate(user_name, user_password)
+      puts "Where are we cloning?"
+      temp_dir = get.strip
+      if directory_exists?(temp_dir)
+        puts `cd #{temp_dir}`
+      end
+    else
+      log_in
+    end
+
+
     # puts "Great. Now what directory would you like to clone to?"
     # puts "For example: /Users/user_name/user_repo_folder/"
     # @clone_directory = gets.strip
