@@ -7,15 +7,23 @@ Gem::Specification.new do |spec|
   spec.email         = ["dwayne.harmon@gmail.com"]
 
   spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.description   = %q{Cold-pressed chillwave edison bulb master cleanse. Edison bulb deep v pinterest sustainable 8-bit microdosing. Four loko tacos forage celiac tumeric prism laborum, trust fund hashtag tattooed enamel pin drinking vinegar everyday carry. Hot chicken ullamco glossier ipsum fixie sartorial shabby chic ugh irure.
+
+Gochujang labore pickled four loko drinking vinegar eiusmod, fam whatever voluptate exercitation ea mumblecore celiac. Retro ex hella air plant typewriter cardigan disrupt aliqua poutine dolore roof party artisan. Tbh live-edge cornhole scenester, duis viral fingerstache 8-bit skateboard knausgaard waistcoat magna readymade forage. Mixtape portland 3 wolf moon voluptate af ut. Disrupt locavore mumblecore, humblebrag voluptate eu pitchfork ramps fanny pack aliquip hashtag distillery mustache dolor before they sold out. Tumblr ugh 3 wolf moon, butcher meh keytar esse do.
+
+Fashion axe humblebrag dolor fingerstache, tofu lomo dolore. Humblebrag edison bulb four loko listicle master cleanse, proident poke gentrify. Brooklyn aliqua velit raw denim schlitz forage culpa edison bulb try-hard. Fam in id minim mustache, eu unicorn yr tousled.
+
+Tousled mlkshk iPhone chartreuse tilde af. Occaecat pinterest street art, kitsch photo booth cred pickled in chartreuse magna in do. Enamel pin ennui actually, lomo glossier bushwick everyday carry. Aliqua tbh tofu 8-bit ut schlitz chicharrones pour-over occupy sartorial. Labore tattooed direct trade polaroid, prism wayfarers pickled. Cloud bread kinfolk street art, XOXO ugh scenester unicorn direct trade vape leggings. Chillwave cray knausgaard aute proident.
+
+Commodo aesthetic semiotics occaecat. Aliquip blog pug enim disrupt proident keytar VHS banjo. Palo santo magna ea, cupidatat chillwave cornhole health goth cardigan.}
+  spec.homepage      = "https://dwayne.fm"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
+  spec.metadata["source_code_uri"] = "https://github.com/dwyn/reclone"
   spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
   # Specify which files should be added to the gem when it is released.

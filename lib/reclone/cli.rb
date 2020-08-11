@@ -1,27 +1,20 @@
-require 'dotenv/load'
+# require 'dotenv/load'
 
 class Reclone::CLI
+# class Reclone
   @current_user = ""
   @current_user_repositories = []
   @clone_directory = ""
 
+  #? Reclone::CLI.new.call
   def call
     up?
     get_config
-
     # log_in
     recloner   
 	end
 
-
-  def get_config
-    Octokit.configure do |c|
-      c.login = ENV['GIT_USER']
-      c.password = ENV['GIT_PASSWORD']
-    end
-    @current_user = Octokit.user
-  end
-
+  # Internet connection check
   def up?
     if Net::Ping::External.new("www.google.com").ping? != true
       puts "You need an internet connection to run this program..."
@@ -30,6 +23,16 @@ class Reclone::CLI
       exit
     end
   end
+
+  def get_config
+    Octokit.configure do |c|
+      binding.pry
+      c.login = ENV['GIT_USER']
+      c.password = ENV['GIT_PASSWORD']
+    end
+    @current_user = Octokit.user
+  end
+
 
   def directory_exists?(directory)
     Dir.exists?(directory)
