@@ -1,5 +1,6 @@
 require "reclone/version"
 
+
 #! Added by moi
 require_relative "./reclone/version.rb"
 require_relative "./reclone/cli.rb"
@@ -10,6 +11,7 @@ require 'pry'
 require 'octokit'
 require 'net/ping'
 require 'dotenv'
+Dotenv.load('./.env')
 
 module Reclone
   class Error < StandardError; end

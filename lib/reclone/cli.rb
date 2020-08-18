@@ -1,20 +1,18 @@
-# require 'dotenv/load'
-require 'io/console'
-
 class Reclone::CLI
-# class Reclone
-# @current_user_repositories = []
-# @clone_directory = ""
-  # def initialize
-  #   @current_user = User.new
-  # end
+  attr_accessor :current_user
+  @@counter = 0
 
+  def initialize
+    @@counter += 1
+  end
   #? Reclone::CLI.new.call
   def call
     up?
     # get_config
+    puts "Hello human."; sleep 0.5
     log_in
-    recloner   
+    puts "oh haayyy"
+    recloner
 	end
 
   # Internet connection check
@@ -32,144 +30,41 @@ class Reclone::CLI
   end
 
   def log_in
-    # YAML.load(File.open(File.join(File.dirname(__FILE__), 'data.yaml')))
-    puts "Hello user"; sleep 1
-    puts "Please enter your user name."
-    user_name = gets.strip
-
-    puts "Awesome. Please enter your password."
-    user_password = STDIN.noecho(&:gets).chomp
-
-    @user = User.new
-    binding.pry
-    #! WHAT DO I DO ABOUT 2-FACTOR AUTHENTICATION???
-    #! Github: https://developer.github.com/changes/2020-02-14-deprecating-password-auth/
-    if @user.authenticate(user_name, user_password)
-      puts "Where are we cloning?"
-      temp_dir = get.strip
-      if directory_exists?(temp_dir)
-        puts `cd #{temp_dir}`
-      end
+    puts "Please enter your Github user name."
+    user_name = gets.strip.to_s
+    @current_user = User.new(user_name)
+# binding.pry
+    if user_name == "exit"
+      exit!
+    elsif @current_user.user_info
+      puts "User account found."
     else
+      puts "I'm having a hard time locating that username."
+      puts "Please try again."
       log_in
     end
-
-
-    # puts "Great. Now what directory would you like to clone to?"
-    # puts "For example: /Users/user_name/user_repo_folder/"
-    # @clone_directory = gets.strip
-
-    # client = Octokit::Client.new(login: "ENV['GIT_USER']", oauth_token: "ENV['GIT_PASSWORD']" )
-    # repos = client.repositories("frxnklin", {sort: :pushed_at})
-
-    # @current_user = client.user
-    # @current_user_repositories = repos
-  end
-
-# #repositories(user = nil, options = {}) ⇒ Array<Sawyer::Resource>
-# Also known as: list_repositories, list_repos, repos
-# system "sudo apt-get -y install vim"
-
-# if $?.exitstatus > 0
-#   puts "I failed to install Vim, I am very sorry :'(" 
-# end
-# Executes cmd in a subshell, returning true if the command was found and ran successfully, false otherwise. An error status is available in $?. The arguments are processed in the same way as for Kernel::exec.
-  
-  def with_pagination
-    pagination_setting = self.auto_paginate 
-    self.auto_paginate = true
-    yield
-  ensure
-    self.auto_paginate = pagination_setting
   end
 
   def recloner
-    # ratelimit           = Octokit.ratelimit
-    # ratelimit_remaining = Octokit.rate_limit.remaining
-    # puts "Rate Limit Remaining: #{ratelimit_remaining} / #{ratelimit}"
-    # puts
-    array = []
-    
-    temp_directory = ""
-    # Octokit.client.repos({}, query: {type: 'owner'}).each do |repository|
+    # puts "Where would you like to reclone your repositories?"
+    # puts 'eg: ~/Development/code/rc'
 
-      
-      Octokit.client.all_repositories(auto_traversal: false).each do |repository|
-      array << repository
-      binding.pry
-      exit
-      temp_directory = "/Users/dwyn/Development/code/#{repository.name}"
-      if directory_exists?(temp_directory)
-        puts "The directory #{temp_directory} already exists"
-        puts "...moving on"
-        puts " "
-      else
-        puts "#{repository.name} Cloned!" if exec("git clone #{repository.uri}")
-      end 
-      full_name = repository[:full_name]
-      has_push_access = repository[:permissions][:push]
-    
-      access_type = if has_push_access
-          "write"
-        else
-          "read-only"
+    # user_input = gets.strip
+
+    puts "Shall I do the thing?"
+    user_input = gets.strip
+
+    if user_input == "yes"|| user_input == "y" || user_input == 'yis' ||user_input == "yeth"
+
+      current_user.repos.each do |repo|
+        if !directory_exists?(repo[:full_name])
+          `git clone #{repo[:ssh_url]}`
         end
-
-      puts "User has #{access_type} access to #{full_name}."
+      end
+    else
+      puts "Then why are you even here?"
+      exit
     end
-    
-    puts "good bye"
-
   end
-
+      
 end
-
-
-
-
-#######################
-# require 'octokit'
-
-# ratelimit           = Octokit.ratelimit
-# ratelimit_remaining = Octokit.ratelimit_remaining
-# puts "Rate Limit Remaining: #{ratelimit_remaining} / #{ratelimit}"
-# puts
-
-# repos = Octokit.repositories("komasaru", {sort: :pushed_at})
-# # ==== OAuth 認証の場合
-# #cl = Octokit::Client.new(login: "komasaru", oauth_token: "token_string")
-# #repos = cl.repositories("komasaru", {sort: :pushed_at})
-
-# # 値取得
-# repos.each do |repo|
-#   puts "[ #{repo.name} ]"
-#   puts "\tOwner       : #{repo.owner.login}"
-#   puts "\tFull Name   : #{repo.full_name}"
-#   puts "\tDescription : #{repo.description}"
-#   puts "\tPrivate     : #{repo.private}"
-#   puts "\tLanguage    : #{repo.language}"
-#   puts "\tURL         : #{repo.html_url}"
-#   puts "\tCreated at  : #{repo.created_at}"
-#   puts "\tUpdated at  : #{repo.updated_at}"
-#   puts "\tPushed  at  : #{repo.pushed_at}"
-#   puts
-# end
-
-
-# def clone(repository, name, opts = {})
-# @path = opts[:path] || '.'
-# clone_dir = opts[:path] ? File.join(@path, name) : name
-
-# arr_opts = []
-# arr_opts << "--bare" if opts[:bare]
-# arr_opts << "-o" << opts[:remote] if opts[:remote]
-# arr_opts << "--depth" << opts[:depth].to_i if opts[:depth] && opts[:depth].to_i > 0
-
-# arr_opts << '--'
-# arr_opts << repository
-# arr_opts << clone_dir
-
-# command('clone', arr_opts)
-
-# opts[:bare] ? {:repository => clone_dir} : {:working_directory => clone_dir}
-# end

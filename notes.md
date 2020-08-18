@@ -8,8 +8,11 @@ Reclone
 - gets password
 - gets repo range (50 or 100 most recent repos)
   -- potential cap on range depending github api
+
 - gets directory to clone to
   -- check to see if repo exists?
+
+  
 - clones them bishes
   -- if just one clone, ask the user to clone manually
   -- let user know if repo range is outside of api rate limiting
