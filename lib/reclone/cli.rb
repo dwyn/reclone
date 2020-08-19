@@ -13,7 +13,7 @@ class Reclone::CLI
     if Net::Ping::External.new("www.google.com").ping? != true
       puts "You need an internet connection to run this program..."
       puts "As if I needed to tell you that."; sleep 1
-      puts "Good bye for now, human."
+      puts "Good bye for now."
       exit
     end
   end
