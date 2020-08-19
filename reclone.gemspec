@@ -36,8 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "octokit", "~> 4.0"
   spec.add_dependency "net-ping"
   spec.add_dependency "pry"
-  spec.add_dependency "tty"
-  spec.add_dependency "clamp"
-  spec.add_dependency "git", '~> 1.3'
+  # spec.add_dependency "clamp"
+  # spec.add_dependency "git", '~> 1.3'
   spec.add_dependency "dotenv", '~> 2.7', '>= 2.7.6'
 end

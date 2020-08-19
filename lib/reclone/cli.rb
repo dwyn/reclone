@@ -1,17 +1,10 @@
 class Reclone::CLI
   attr_accessor :current_user
-  @@counter = 0
 
-  def initialize
-    @@counter += 1
-  end
-  #? Reclone::CLI.new.call
   def call
     up?
-    # get_config
-    puts "Hello human."; sleep 0.5
+    puts "Hiya friend"; sleep 0.5
     log_in
-    puts "oh haayyy"
     recloner
 	end
 
@@ -33,11 +26,11 @@ class Reclone::CLI
     puts "Please enter your Github user name."
     user_name = gets.strip.to_s
     @current_user = User.new(user_name)
-# binding.pry
+
     if user_name == "exit"
       exit!
     elsif @current_user.user_info
-      puts "User account found."
+      puts "Oh hayyy, I found you!"
     else
       puts "I'm having a hard time locating that username."
       puts "Please try again."
@@ -46,25 +39,25 @@ class Reclone::CLI
   end
 
   def recloner
-    # puts "Where would you like to reclone your repositories?"
-    # puts 'eg: ~/Development/code/rc'
-
-    # user_input = gets.strip
-
+    puts "Remember, the next step will clone repositories in"
+    puts "in your present working directory."
+    puts "Make sure you are in the right place before doing the thing."
+    puts " "
     puts "Shall I do the thing?"
+  
     user_input = gets.strip
 
     if user_input == "yes"|| user_input == "y" || user_input == 'yis' ||user_input == "yeth"
-
       current_user.repos.each do |repo|
         if !directory_exists?(repo[:full_name])
           `git clone #{repo[:ssh_url]}`
         end
       end
-    else
-      puts "Then why are you even here?"
+    elsif user_input == "no"|| user_input == "n" || user_input == "nah"
+      puts "Thanks for stopping by, I guess?"
       exit
+    else
+      recloner
     end
-  end
-      
+  end      
 end

@@ -1,7 +1,5 @@
 class Octokitty
 #! Do I need this class?
-#! If so, can I how will the user class leverage octokitty
-
   attr_reader :client, :repo_call
 
   def initialize
@@ -9,7 +7,6 @@ class Octokitty
   end
 
   def user_config(user_name)
-    # binding.pry
     begin  
       user = @client.user(user_name)
     rescue  
