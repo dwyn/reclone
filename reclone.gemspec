@@ -15,7 +15,8 @@ Gem::Specification.new do |s|
 
   s.license       = "MIT"
   s.required_ruby_version = ">= 2.5.0"
-  s.files         = ["lib/reclone.rb"]
+  # s.files         = ["lib/reclone.rb"]
+  s.files         = `git ls-files -z`.split("\x0")
   # spec.metadata["homepage_uri"] = spec.homepage
   # spec.metadata["source_code_uri"] = "https://github.com/dwyn/reclone"
   # spec.metadata["changelog_uri"] = "https://github.com/dwyn/reclone/blob/master/CODE_OF_CONDUCT.md"
@@ -24,9 +25,9 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rspec", "~> 3.0"
   s.add_development_dependency "rake", "~> 10.0"
-  s.add_development_dependency "pry"
+  s.add_development_dependency "pry", '~> 0.13.1'
  
-  s.add_dependency "net-ping"
+  s.add_dependency "net-ping", '~> 2.0', '>= 2.0.8'
   s.add_dependency "octokit", "~> 4.0"
   s.add_dependency "bundler", "~> 2.1.4"
   s.add_dependency "dotenv", '~> 2.7', '>= 2.7.6'

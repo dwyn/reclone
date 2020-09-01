@@ -39,9 +39,11 @@ class Reclone::CLI
   end
 
   def recloner
-    puts "Remember, the next step will clone repositories in"
+    puts "Remember, the next step will clone repositories"
     puts "in your present working directory."
+    puts " "
     puts "Make sure you are in the right place before doing the thing."
+    puts " "
     puts " "
     puts "Shall I do the thing?"
   

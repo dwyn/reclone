@@ -1,4 +1,4 @@
-require "reclone/version"
+# require "reclone/version.rb"
 
 
 #! Added by moi
@@ -8,7 +8,7 @@ require_relative "reclone/user.rb"
 require_relative "reclone/octokitty.rb"
 
 
-require 'pry'
+# require 'pry'
 # require 'git'
 require 'octokit'
 require 'net/ping'

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    reclone (0.6.0)
+    reclone (1.0.0)
       bundler (~> 2.1.4)
       dotenv (~> 2.7, >= 2.7.6)
       net-ping
