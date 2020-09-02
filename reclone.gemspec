@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name          = "reclone"
   s.version       = Reclone::VERSION
   s.summary       = %q{Re-clone a few repos. No biggie.}
-  s.description   = %q{Re-clone your most recent 100 repos from GitHub vis SSH.}
+  s.description   = %q{Re-clone your most recent 100 repos from GitHub via SSH.}
   
   s.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
   

@@ -1,6 +1,3 @@
-# require "reclone/version.rb"
-
-
 #! Added by moi
 require_relative "./reclone/version.rb"
 require_relative "./reclone/cli.rb"
